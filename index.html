@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/main.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <nav>
+      <div class="brand">
+        <h1>Tiro parabolico</h1>
+        <div class="button-menu">
+          <p>|||</p>
+        </div>
+      </div>
+      <ul>
+        <li>Acerca</li>
+      </ul>
+    </nav>
+    <main>
+      <div class="fields">
+        <div class="field-input">
+          <input id="vel_inicial" type="number" name="vel_inicial">
+          <label for="vel_inicial">velocidad inicial</label>
+        </div>
+        <div class="field-input">
+          <input id="deg" type="number" name="deg">
+          <label for="deg">Angulo</label>
+        </div>
+        <button id="calc">
+          Calcular
+        </button>
+      </div>
+      <div id="show-information">
+        <div>
+          <h3>Tiempo estimado: </h3>
+        </div>
+        <div>
+          <h3>Distancia estimada: </h3>
+        </div>
+      </div>
+    </main>
+    <div class="container">
+      <canvas id="canvas"></canvas>
+    </div>
+  </div>
+  <script src="./app.js" type="module"></script>
+</body>
+</html>
