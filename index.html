@@ -16,35 +16,33 @@
         </div>
       </div>
       <ul>
+        <li>¿Que es el tiro parabolico?</li>
         <li>Acerca</li>
       </ul>
     </nav>
     <main>
-      <div class="fields">
-        <div class="field-input">
-          <input id="vel_inicial" type="number" name="vel_inicial">
-          <label for="vel_inicial">velocidad inicial</label>
+      <div id="show-information">
+        <div class="shots-header">
+          <h2 id="shots">Lanzamientos 0</h2>
         </div>
-        <div class="field-input">
-          <input id="deg" type="number" name="deg">
-          <label for="deg">Angulo</label>
+      </div>
+      <div class="container">
+        <div class="form">
+          <div class="field-input">
+            <input id="vel_inicial" type="number" name="vel_inicial" placeholder="Velocidad inicial">
+          </div>
+          <div class="field-input">
+            <input id="deg" type="number" name="deg" placeholder="Ángulo">
+          </div>
         </div>
         <button id="calc">
           Calcular
         </button>
-      </div>
-      <div id="show-information">
-        <div>
-          <h3>Tiempo estimado: </h3>
-        </div>
-        <div>
-          <h3>Distancia estimada: </h3>
+        <div class="container-canvas">
+          <canvas id="canvas"></canvas>
         </div>
       </div>
-    </main>
-    <div class="container">
-      <canvas id="canvas"></canvas>
-    </div>
+     </main>
   </div>
   <script src="./app.js" type="module"></script>
 </body>

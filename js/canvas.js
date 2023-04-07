@@ -5,36 +5,51 @@ export default class Canvas {
     this.canvas = document.getElementById("canvas");
     this.context = this.canvas.getContext("2d");
     this.canvas.width = 800;
-    this.canvas.height = 500;
+    this.canvas.height = 450;
 
-    this.context.strokeStyle = "black";
+    this.context.strokeStyle = "white";
     this.context.lineWidth = 1;
+    this.countShots = 1;
 
     this.circle = circle;
     this.drawCircle();
     this.drawGrid();
   }
   draw () {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    const showInformation = document.getElementById("show-information");
+    const shots = document.getElementById("shots");
+    const button = document.getElementById("calc");
+    const div = document.createElement("div");
+    const v0 = document.getElementById("vel_inicial");
+    const deg = document.getElementById("deg");
+
     let intervalTime = 0.01;
     let passTime = 0;
-    const v0 = document.getElementById("vel_inicial").value;
-    const deg = document.getElementById("deg").value;
-    const showInformation = document.getElementById("show-information");
-    const time = math.maxTime(v0, math.toDeg(deg));
+    const time = math.maxTime(v0.value, math.toDeg(deg.value));
+    const maxHeight = math.maxHeight(v0.value, math.toDeg(deg.value));
+
+    button.setAttribute("disabled", "disabled");
 
     const interval = setInterval(() => {
-      const { vx0, vy0 } = math.toComponents(v0, math.toDeg(deg));
-      const { x, y } = math.distance(vx0,vy0, passTime);
-      console.log(toString(time));
+      const { vx0, vy0 } = math.toComponents(v0.value, math.toDeg(deg.value));
+      const { x, y } = math.distance(vx0, vy0, passTime);
 
-      showInformation.innerHTML = `
-      <div>
-        <h3>Tiempo: ${toString(time).slice(0, 3)}</h3>
-      </div>
-      <div>
-        <h3>Distancia: ${Math.floor(x)}</h3>
+      div.innerHTML = `
+      <div class="shot-item">
+        <h3>Lanzamiento ${this.countShots-1}</h3>
+        <div>
+          <h3>Tiempo: ${time.toFixed(2)} segundos</h3>
+        </div>
+        <div>
+          <h3>Distancia: ${x.toFixed(2)} metros</h3>
+        </div>
+        <div>
+          <h3>Altura maxima: ${maxHeight.toFixed(2)} metros</h3>
+        </div>
       </div>
       `;
+
       passTime += intervalTime;
       this.drawCircle();
       this.drawGrid();
@@ -50,8 +65,11 @@ export default class Canvas {
 
       if (passTime >= time) {
         clearInterval(interval);
+        button.removeAttribute("disabled");
       }
-    }, 10);
+    }, 0.01);
+    showInformation.appendChild(div);
+    shots.innerText = `Lanzamientos ${this.countShots++}`;
   }
   drawGrid () {
     for (let i = 0; i < this.canvas.height; i += 50) {
@@ -81,7 +99,7 @@ export default class Canvas {
     this.circle.positions.forEach(position => {
       this.context.lineTo(position.x, position.y);
     });
-    this.context.strokeStyle = "black";
+    this.context.strokeStyle = "white";
     this.context.stroke();
   }
 }
