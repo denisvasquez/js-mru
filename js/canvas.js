@@ -18,7 +18,6 @@ export default class Canvas {
   draw () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     const showInformation = document.getElementById("show-information");
-    const shots = document.getElementById("shots");
     const button = document.getElementById("calc");
     const div = document.createElement("div");
     const v0 = document.getElementById("vel_inicial");
@@ -30,22 +29,22 @@ export default class Canvas {
     const maxHeight = math.maxHeight(v0.value, math.toDeg(deg.value));
 
     button.setAttribute("disabled", "disabled");
+    v0.setAttribute("disabled", "disabled");
+    deg.setAttribute("disabled", "disabled");
 
     const interval = setInterval(() => {
       const { vx0, vy0 } = math.toComponents(v0.value, math.toDeg(deg.value));
       const { x, y } = math.distance(vx0, vy0, passTime);
 
       div.innerHTML = `
-      <div class="shot-item">
-        <h3>Lanzamiento ${this.countShots-1}</h3>
-        <div>
-          <h3>Tiempo: ${time.toFixed(2)} segundos</h3>
+      <div class="card bg-dark text-light rounded-0 m-0">
+        <div class="card-header">
+          <h3>${this.countShots-1}</h3>
         </div>
-        <div>
-          <h3>Distancia: ${x.toFixed(2)} metros</h3>
-        </div>
-        <div>
-          <h3>Altura maxima: ${maxHeight.toFixed(2)} metros</h3>
+        <div class="card-body">
+          <p>Tiempo: ${time.toFixed(2)} segundos</p>
+          <p>Distancia: ${x.toFixed(2)} metros</p>
+          <p>Altura maxima: ${maxHeight.toFixed(2)} metros</p>
         </div>
       </div>
       `;
@@ -54,7 +53,7 @@ export default class Canvas {
       this.drawCircle();
       this.drawGrid();
       this.circle.x = x;
-      this.circle.y=-(y);
+      this.circle.y = -y;
 
       this.circle.positions.push({
         x: this.circle.x+this.circle.size,
@@ -66,10 +65,14 @@ export default class Canvas {
       if (passTime >= time) {
         clearInterval(interval);
         button.removeAttribute("disabled");
+        v0.removeAttribute("disabled");
+        v0.value = "";
+        deg.removeAttribute("disabled");
+        deg.value = "";
       }
     }, 0.01);
     showInformation.appendChild(div);
-    shots.innerText = `Lanzamientos ${this.countShots++}`;
+    this.countShots++;
   }
   drawGrid () {
     for (let i = 0; i < this.canvas.height; i += 50) {
