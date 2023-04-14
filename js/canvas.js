@@ -5,30 +5,52 @@ export default class Canvas {
     this.canvas = document.getElementById("canvas");
     this.context = this.canvas.getContext("2d");
     this.canvas.width = 800;
-    this.canvas.height = 450;
+    this.canvas.height = 500;
 
     this.context.strokeStyle = "white";
     this.context.lineWidth = 1;
     this.countShots = 1;
 
     this.circle = circle;
-    this.drawCircle();
+    this.drawGrid();
+  }
+  clearContext () {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.drawGrid();
   }
   draw () {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     const showInformation = document.getElementById("show-information");
+    const alert = document.getElementById("alert");
     const button = document.getElementById("calc");
+    const clear = document.getElementById("clear");
     const div = document.createElement("div");
     const v0 = document.getElementById("vel_inicial");
     const deg = document.getElementById("deg");
 
+    if (v0.value < 1 || v0.value === "") {
+      alert.classList.remove("d-none");
+      alert.innerText = "¡La velocidad inicial no es valida!";
+      return;
+    } else {
+      alert.classList.add("d-none");
+    }
+
+    if (deg.value > 90 || deg.value === "") {
+      alert.classList.remove("d-none");
+      alert.innerText = "¡El angulo no es valido!";
+      return;
+    } else {
+      alert.classList.add("d-none");
+    }
+
+    this.clearContext();
     let intervalTime = 0.01;
     let passTime = 0;
     const time = math.maxTime(v0.value, math.toDeg(deg.value));
     const maxHeight = math.maxHeight(v0.value, math.toDeg(deg.value));
 
     button.setAttribute("disabled", "disabled");
+    clear.setAttribute("disabled", "disabled");
     v0.setAttribute("disabled", "disabled");
     deg.setAttribute("disabled", "disabled");
 
@@ -39,7 +61,7 @@ export default class Canvas {
       div.innerHTML = `
       <div class="card bg-dark text-light rounded-0 m-0">
         <div class="card-header">
-          <h3>${this.countShots-1}</h3>
+          Lanzamiento ${this.countShots-1}
         </div>
         <div class="card-body">
           <p>Tiempo: ${time.toFixed(2)} segundos</p>
@@ -65,12 +87,13 @@ export default class Canvas {
       if (passTime >= time) {
         clearInterval(interval);
         button.removeAttribute("disabled");
+        clear.removeAttribute("disabled");
         v0.removeAttribute("disabled");
         v0.value = "";
         deg.removeAttribute("disabled");
         deg.value = "";
       }
-    }, 0.01);
+    }, 1);
     showInformation.appendChild(div);
     this.countShots++;
   }
@@ -90,7 +113,7 @@ export default class Canvas {
     }
   }
   drawCircle () {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.clearContext();
     this.context.beginPath();
     this.context.arc(this.circle.x+this.circle.size, this.circle.y+this.canvas.height-this.circle.size, this.circle.size, 0, 2 * Math.PI);
     this.context.fillStyle = this.circle.color;

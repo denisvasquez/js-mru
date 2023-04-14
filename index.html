@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/main.css">
   <title>Tiro parabólico | Fisica</title>
 </head>
@@ -20,7 +20,7 @@
           ¡Hola! Mi nombre es Denis Vásquez y estoy emocionado de presentar mi proyecto de Física 1 para la Universidad Mariano Gálvez de Guatemala. Este proyecto se centra en el estudio del tiro parabólico y su trayectoria. Usando conceptos físicos y matemáticos, he desarrollado una aplicación interactiva que muestra cómo un objeto se mueve en el aire bajo la influencia de la gravedad. Esta aplicación utiliza JavaScript y HTML para dibujar gráficos en un canvas y permite a los usuarios ajustar la velocidad inicial y el ángulo de lanzamiento para ver cómo afectan la trayectoria del objeto. Espero que este proyecto sea útil para comprender mejor los principios de la física y el movimiento en el aire.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
@@ -37,12 +37,12 @@
           El tiro parabólico es un movimiento que resulta de la unión de dos movimientos: El movimiento rectilíneo uniforme (componentes horizontal) y, el movimiento vertical (componente vertical) que se efectúa por la gravedad y el resultado de este movimiento es una parábola.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
   </div>
-
+  
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
@@ -53,14 +53,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#what-is">
+              <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#what-is">
                 ¿Que es tiro parabólico?
-              </button>
+              </a>
             </li>
             <li class="nav-item">
-              <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#about-this">
+              <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#about-this">
                 Acerca de... 
-              </button>
+              </a>
             </li>
           </ul>
         </div>
@@ -72,15 +72,17 @@
           <div class="col-md-4">
             <div class="card bg-dark text-light rounded-0 mb-3">
               <div class="card-header">
-                <h2 id="shots">Lanzamientos</h2>
+                <h2>Historial</h2>
               </div>
-              <div class="card-body p-0">
+              <div class="card-body" id="history">
                 <div id="show-information"></div>
               </div>
             </div>
           </div>
           <div class="col-md-8">
-            <div>
+            <div class="card bg-dark rounded-0">
+              <div class="alert alert-danger rounded-0 d-none" role="alert" id="alert">
+              </div>
               <div class="mb-3 d-flex">
                 <input id="vel_inicial" class="form-control bg-dark text-light rounded-0 m-1" type="number" placeholder="Velocidad inicial">
                 <input id="deg" class="form-control bg-dark text-light rounded-0 m-1" type="number" placeholder="Ángulo">
@@ -88,6 +90,9 @@
               <div class="d-grid gap-2 mb-3">
                 <button id="calc" class="btn btn-primary rounded-0">
                   Calcular
+                </button>
+                <button id="clear" class="btn btn-danger rounded-0" disabled>
+                  Limpiar lanzamientos
                 </button>
               </div>
             </div>
@@ -99,7 +104,7 @@
       </div>
      </main>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="./app.js" type="module"></script>
 </body>
 </html>
