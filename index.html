@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/main.css">
   <title>Tiro parabólico | Fisica</title>
@@ -18,6 +19,9 @@
         </div>
         <div class="modal-body">
           ¡Hola! Mi nombre es Denis Vásquez y estoy emocionado de presentar mi proyecto de Física 1 para la Universidad Mariano Gálvez de Guatemala. Este proyecto se centra en el estudio del tiro parabólico y su trayectoria. Usando conceptos físicos y matemáticos, he desarrollado una aplicación interactiva que muestra cómo un objeto se mueve en el aire bajo la influencia de la gravedad. Esta aplicación utiliza JavaScript y HTML para dibujar gráficos en un canvas y permite a los usuarios ajustar la velocidad inicial y el ángulo de lanzamiento para ver cómo afectan la trayectoria del objeto. Espero que este proyecto sea útil para comprender mejor los principios de la física y el movimiento en el aire.
+        </div>
+        <div class="text-center">
+          <img src="./images/logo.png" alt="" width=250>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Cerrar</button>
@@ -42,40 +46,69 @@
       </div>
     </div>
   </div>
-  
-  <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Tiro parabólico | Beta</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#what-is">
-                ¿Que es tiro parabólico?
-              </a>
-            </li>
-            <li class="nav-item">
-              <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#about-this">
-                Acerca de... 
-              </a>
-            </li>
-          </ul>
-        </div>
+
+  <!-- Side bar -->
+  <nav class="sidebar" id="sidebar">
+    <header class="header-sidebar">
+      <button id="btn-sidebar-close">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3>Simulador</h3>
+    </header>
+    <hr class="text-light">
+    <div class="m-4">
+     <div class="mb-3">
+        <input type="text" id="grid-gap" class="form-control bg-dark rounded-0 text-light" placeholder="Tamaño en metros de la cuadricula:">
       </div>
-    </nav>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary rounded-0">Establecer</button>
+      </div>
+    </div>
+    <footer class="footer-sidebar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#what-is">
+            ¿Que es tiro parabólico?
+          </a>
+        </li>
+        <li class="nav-item">
+          <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#about-this">
+            Acerca de... 
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </nav>
+  
+  <!-- 
+
+  -->
+  <div id="app">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-between text-light pt-3">
+        <header class="header">
+          <button id="btn-sidebar-open" class="btn-sidebar">
+            <i class="far fa-bars"></i>
+          </button>
+          <div class="brand">
+            <h2>
+              Simulador Tiro parabólico | Beta
+            </h2>
+          </div>
+       </header>
+      </div>
+    </div>
+    
     <main>
-      <div class="container mt-5">
+      <div class="container">
+        <hr class="text-light">
         <div class="row">
           <div class="col-md-4">
             <div class="card bg-dark text-light rounded-0 mb-3">
-              <div class="card-header">
-                <h2>Historial</h2>
+              <div class="card-header text-center">
+                <h2>Estadisticas de lanzamiento</h2>
               </div>
-              <div class="card-body" id="history">
-                <div id="show-information"></div>
+              <div class="card-body" id="shot">
               </div>
             </div>
           </div>

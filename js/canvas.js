@@ -4,12 +4,12 @@ export default class Canvas {
   constructor (circle) {
     this.canvas = document.getElementById("canvas");
     this.context = this.canvas.getContext("2d");
-    this.canvas.width = 800;
-    this.canvas.height = 500;
+    this.canvas.width = 400;
+    this.canvas.height = 200;
 
     this.context.strokeStyle = "white";
     this.context.lineWidth = 1;
-    this.countShots = 1;
+    this.gridCanvas = 20;
 
     this.circle = circle;
     this.drawGrid();
@@ -19,11 +19,10 @@ export default class Canvas {
     this.drawGrid();
   }
   draw () {
-    const showInformation = document.getElementById("show-information");
+    const divShot = document.getElementById("shot");
     const alert = document.getElementById("alert");
     const button = document.getElementById("calc");
     const clear = document.getElementById("clear");
-    const div = document.createElement("div");
     const v0 = document.getElementById("vel_inicial");
     const deg = document.getElementById("deg");
 
@@ -58,15 +57,20 @@ export default class Canvas {
       const { vx0, vy0 } = math.toComponents(v0.value, math.toDeg(deg.value));
       const { x, y } = math.distance(vx0, vy0, passTime);
 
-      div.innerHTML = `
-      <div class="card bg-dark text-light rounded-0 m-0">
-        <div class="card-header">
-          Lanzamiento ${this.countShots-1}
-        </div>
+      if (x > this.canvas.width) {
+        this.canvas.width = x + 200;
+      }
+
+      if (maxHeight > this.canvas.height) {
+        this.canvas.height = maxHeight + 200;
+      }
+
+      divShot.innerHTML = `
+      <div class="card bg-dark text-light rounded-0">
         <div class="card-body">
           <p>Tiempo: ${time.toFixed(2)} segundos</p>
           <p>Distancia: ${x.toFixed(2)} metros</p>
-          <p>Altura maxima: ${maxHeight.toFixed(2)} metros</p>
+          <p>Altura máxima: ${maxHeight.toFixed(2)} metros</p>
         </div>
       </div>
       `;
@@ -94,18 +98,16 @@ export default class Canvas {
         deg.value = "";
       }
     }, 1);
-    showInformation.appendChild(div);
-    this.countShots++;
   }
   drawGrid () {
-    for (let i = 0; i < this.canvas.height; i += 50) {
+    for (let i = 0; i < this.canvas.height; i += this.gridCanvas) {
       this.context.beginPath();
       this.context.moveTo(0, i);
       this.context.lineTo(this.canvas.width, i);
       this.context.stroke();
     }
 
-    for (let j = 0; j < this.canvas.width; j += 50) {
+    for (let j = 0; j < this.canvas.width; j += this.gridCanvas) {
       this.context.beginPath();
       this.context.moveTo(j, 0);
       this.context.lineTo(j, this.canvas.height);

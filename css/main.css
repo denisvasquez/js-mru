@@ -4,6 +4,7 @@
 }
 body {
   background-color: #0F101A;
+  overflow-x: hidden;
 }
 #canvas {
   width: 100%;
@@ -34,6 +35,55 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  position: relative;
+}
+.btn-sidebar {
+  position: absolute;
+  left: 30px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 25px;
+}
+.sidebar {
+  background-color: #242726;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: -420px;
+  width: 420px;
+  height: 100vh;
+  z-index: 5;
+  transition: .5s;
+}
+.header-sidebar {
+  text-align: center;
+  margin: 2rem 0;
+}
+.footer-sidebar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+#btn-sidebar-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  color: white;
+  font-size: 20px;
+  outline: none;
+  border: none;
 }
 @media screen and (max-width: 768px) {
   .row {
