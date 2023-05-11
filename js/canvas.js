@@ -4,12 +4,13 @@ export default class Canvas {
   constructor (circle) {
     this.canvas = document.getElementById("canvas");
     this.context = this.canvas.getContext("2d");
+
     this.canvas.width = 400;
     this.canvas.height = 200;
 
     this.context.strokeStyle = "white";
     this.context.lineWidth = 1;
-    this.gridCanvas = 20;
+    this.gridCanvas = 50;
 
     this.circle = circle;
     this.drawGrid();

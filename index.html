@@ -56,12 +56,19 @@
       <h3>Simulador</h3>
     </header>
     <hr class="text-light">
+    <div class="alert alert-danger rounded-0 m-3 d-none" role="alert" id="alert-sidebar"></div>
     <div class="m-4">
      <div class="mb-3">
-        <input type="text" id="grid-gap" class="form-control bg-dark rounded-0 text-light" placeholder="Tamaño en metros de la cuadricula:">
+        <input type="number" id="input-canvas-grid" class="form-control bg-dark rounded-0 text-light" placeholder="Tamaño en metros de la cuadricula:">
+      </div>
+     <div class="mb-3">
+        <input type="number" id="input-canvas-width" class="form-control bg-dark rounded-0 text-light" placeholder="Largo en metros de la cuadricula:">
+      </div>
+     <div class="mb-3">
+        <input type="number" id="input-canvas-height" class="form-control bg-dark rounded-0 text-light" placeholder="Altura en metros de la cuadricula:">
       </div>
       <div class="d-grid gap-2">
-        <button class="btn btn-primary rounded-0">Establecer</button>
+        <button id="btn-canvas-grid" class="btn btn-primary rounded-0">Establecer</button>
       </div>
     </div>
     <footer class="footer-sidebar">
@@ -114,8 +121,7 @@
           </div>
           <div class="col-md-8">
             <div class="card bg-dark rounded-0">
-              <div class="alert alert-danger rounded-0 d-none" role="alert" id="alert">
-              </div>
+              <div class="alert alert-danger rounded-0 d-none" role="alert" id="alert"></div>
               <div class="mb-3 d-flex">
                 <input id="vel_inicial" class="form-control bg-dark text-light rounded-0 m-1" type="number" placeholder="Velocidad inicial">
                 <input id="deg" class="form-control bg-dark text-light rounded-0 m-1" type="number" placeholder="Ángulo">
