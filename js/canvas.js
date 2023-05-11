@@ -7,10 +7,10 @@ export default class Canvas {
 
     this.canvas.width = 400;
     this.canvas.height = 200;
+    this.gridCanvas = 50;
 
     this.context.strokeStyle = "white";
     this.context.lineWidth = 1;
-    this.gridCanvas = 50;
 
     this.circle = circle;
     this.drawGrid();
@@ -69,9 +69,13 @@ export default class Canvas {
       divShot.innerHTML = `
       <div class="card bg-dark text-light rounded-0">
         <div class="card-body">
-          <p>Tiempo: ${time.toFixed(2)} segundos</p>
-          <p>Distancia: ${x.toFixed(2)} metros</p>
+          <p>Tiempo total de vuelo: ${time.toFixed(2)} segundos</p>
+          <p>Distancia máxima: ${x.toFixed(2)} metros</p>
           <p>Altura máxima: ${maxHeight.toFixed(2)} metros</p>
+          <p>Ángulo: ${deg.value}</p>
+          <p>Velocidad inicial: ${v0.value} m/s</p>
+          <p>Componente horizontal: ${vx0.toFixed(2)} m/s</p>
+          <p>Componente vertical: ${vy0.toFixed(2)} m/s</p>
         </div>
       </div>
       `;
@@ -94,9 +98,7 @@ export default class Canvas {
         button.removeAttribute("disabled");
         clear.removeAttribute("disabled");
         v0.removeAttribute("disabled");
-        v0.value = "";
         deg.removeAttribute("disabled");
-        deg.value = "";
       }
     }, 1);
   }
