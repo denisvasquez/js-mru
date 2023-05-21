@@ -12,7 +12,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const inputCanvasGrid = document.getElementById("input-canvas-grid");
   inputCanvasGrid.value = canvas.gridCanvas;
 
-  btnCalc.onclick = () => canvas.draw();
+  btnCalc.onclick = () => {
+    circle.positions = [];
+    canvas.draw()
+  };
   btnClear.onclick = () => {
     circle.positions = [];
     canvas.clearContext();
