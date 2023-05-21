@@ -13,7 +13,10 @@ window.addEventListener("DOMContentLoaded", () => {
   inputCanvasGrid.value = canvas.gridCanvas;
 
   btnCalc.onclick = () => canvas.draw();
-  btnClear.onclick = () => canvas.clearContext();
+  btnClear.onclick = () => {
+    circle.positions = [];
+    canvas.clearContext();
+  };
 
   const btnSidebarOpen = document.getElementById("btn-sidebar-open");
   const btnSidebarClose = document.getElementById("btn-sidebar-close");
